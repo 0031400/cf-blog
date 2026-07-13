@@ -15,10 +15,10 @@
 		"nodejs_compat",
 		"global_fetch_strictly_public"
 	],
-	// "assets": {
-	// 	"binding": "ASSETS",
-	// 	"directory": ".open-next/assets"
-	// },
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".open-next/assets"
+	},
 	// "images": {
 		// Enable image optimization
 		// see https://opennext.js.org/cloudflare/howtos/image

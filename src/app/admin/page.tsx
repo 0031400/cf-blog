@@ -5,12 +5,13 @@ import Link from "next/link"
 type PageProps = {
     searchParams: Promise<{ error?: string }>
 }
+export const dynamic = "force-dynamic"
 export default async function AdminPage({ searchParams }: PageProps) {
     const admin = await isAdmin()
     const params = await searchParams
     if (!admin) {
         return (
-            <main className="mx-auto min-h-screen w-full flex max-w-md items-center px-5 py-10">
+            <main className="mx-auto min-h-[calc(100vh-57px)] w-full flex max-w-md items-center px-5 py-10">
                 <section className="w-full rounded border border-neutral-300 bg-white p-6">
                     <h1 className="text-2xl font-semibold text-neutral-500">后台登录</h1>
                     {params.error ? <p className="mt-3 text-sm text-red-600">密钥不正确</p> : null}
@@ -24,15 +25,18 @@ export default async function AdminPage({ searchParams }: PageProps) {
     }
     const posts = await getAdminPosts()
     return (
-        <main className="mx-auto min-h-screen w-full max-w-5xl px-5 py-8">
+        <main className="mx-auto min-h-[calc(100vh-57px)] w-full max-w-5xl px-5 py-8">
             <header className="mb-8 flex items-center justify-between border-b border-neutral-300 pb-5">
                 <div>
                     <p className="text-sm text-neutral-500">Admin</p>
                     <h1 className="text-3xl font-semibold text-neutral-950">文章后台</h1>
                 </div>
-                <form action="/api/admin/logout" method="post">
-                    <button className="rounded border border-neutral-300 bg-white px-4 py-2 text-sm hover:border-neutral-950" type="submit">退出</button>
-                </form>
+                <div className="flex items-center gap-3">
+                    <Link className="rounded border border-neutral-300 bg-white px-4 py-2 text-sm hover:border-neutral-950" href="/">查看首页</Link>
+                    <form action="/api/admin/logout" method="post">
+                        <button className="rounded border border-neutral-300 bg-white px-4 py-2 text-sm hover:border-neutral-950" type="submit">退出</button>
+                    </form>
+                </div>
             </header>
             <section className="mb-10 rounded border border-neutral-300 bg-white p-5">
                 <h2 className="mb-5 text-xl font-semibold text-neutral-950">新建文章</h2>

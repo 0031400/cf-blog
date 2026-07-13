@@ -17,7 +17,7 @@ export async function POST(request: Request, context: RouteContext) {
     const formData = await request.formData()
     const action = String(formData.get('action') || '')
     const db = getCloudflareContext().env.DB
-    if (action == 'delete') {
+    if (action === 'delete') {
         await db.prepare('DELETE FROM posts WHERE id = ?').bind(postId).run()
         return NextResponse.redirect(new URL('/admin', request.url))
     }
@@ -26,7 +26,7 @@ export async function POST(request: Request, context: RouteContext) {
     const excerpt = String(formData.get('excerpt') || '').trim()
     const content = String(formData.get('content') || '').trim()
     const status = action === 'publish' ? 'published' : 'draft'
-    const now = new Date().toISOString();
+    const now = new Date().toISOString()
     if (!title || !slug || !content) {
         return NextResponse.redirect(new URL('/admin', request.url))
     }

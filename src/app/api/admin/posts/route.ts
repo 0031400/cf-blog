@@ -24,6 +24,6 @@ export async function POST(request: Request) {
         ) VALUES (?,?,?,?,?,?,?,?)
         `
     ).bind(slug, title, excerpt, content, status, now, now, status === 'published' ? now : null).run()
-    const postId=Number(result.meta.last_row_id)
+    const postId = Number(result.meta.last_row_id)
     return NextResponse.redirect(new URL(`/admin/posts/${postId}`, request.url))
 }

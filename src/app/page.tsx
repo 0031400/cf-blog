@@ -1,10 +1,10 @@
 import { getPublishedPosts } from "@/lib/posts";
 import Link from "next/link";
-
+export const dynamic = "force-dynamic"
 export default async function Home() {
 	const posts = await getPublishedPosts()
 	return (
-		<main className="mx-auto min-h-screen w-full max-w-3xl px-5 py-10">
+		<main className="mx-auto min-h-[calc(100vh-57px)] w-full max-w-3xl px-5 py-10">
 			<header className="mb-10 border-b border-neutral-300 pb-6">
 				<p className="mb-2 text-sm text-neutral-500">Cloudflare Workers Blog</p>
 				<h1 className="text-4xl font-semibold tracking-normal text-neutral-900">CF BLOG</h1>
