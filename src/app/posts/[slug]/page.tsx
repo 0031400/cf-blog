@@ -1,4 +1,5 @@
 import { getPostBySlug } from "@/lib/posts"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 type PageProps = {
@@ -11,12 +12,15 @@ export default async function PostPage({ params }: PageProps) {
         notFound()
     }
     return (
-        <main>
+        <main className="mx-auto min-h-screen w-full max-w-3xl px-5 py-10">
             <article>
-                <h1>{post.title}</h1>
-                {post.published_at ? <time>{post.published_at}</time> : null}
-                <p>{post.excerpt}</p>
-                <div style={{ whiteSpace: "pre-wrap" }}>{post.content}</div>
+                <Link href="/" className="mb-8 inline-block text-sm text-neutral-500 hover:text-neutral-950">返回首页</Link>
+                <header className="mb-8 border-b border-neutral-300 pb-6">
+                    <h1 className="text-4xl font-semibold tracking-normal text-neutral-950">{post.title}</h1>
+                    {post.published_at ? <time className="mt-4 block text-sm text-neutral-500">{post.published_at}</time> : null}
+                    <p className="mt-5 text-lg leading-8 text-neutral-600">{post.excerpt}</p>
+                </header>
+                <div className="whitespace-pre-wrap text-base leading-8 text-neutral-800">{post.content}</div>
             </article>
         </main>
     )

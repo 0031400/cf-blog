@@ -10,44 +10,54 @@ export default async function AdminPage({ searchParams }: PageProps) {
     const params = await searchParams
     if (!admin) {
         return (
-            <main>
-                <h1>后台登录</h1>
-                {params.error ? <p>密钥不正确</p> : null}
-                <form action="/api/admin/login" method="post">
-                    <input type="password" name="token" placeholder="ADMIN_TOKEN" required />
-                    <button type="submit">登录</button>
-                </form>
+            <main className="mx-auto min-h-screen w-full flex max-w-md items-center px-5 py-10">
+                <section className="w-full rounded border border-neutral-300 bg-white p-6">
+                    <h1 className="text-2xl font-semibold text-neutral-500">后台登录</h1>
+                    {params.error ? <p className="mt-3 text-sm text-red-600">密钥不正确</p> : null}
+                    <form action="/api/admin/login" method="post" className="mt-6 space-y-6">
+                        <input className="w-full rounded border border-neutral-300 px-3 py-2 outline-none focus:border-neutral-950" type="password" name="token" placeholder="ADMIN_TOKEN" required />
+                        <button className="w-full rounded bg-neutral-950 px-4 py-2 text-white" type="submit">登录</button>
+                    </form>
+                </section>
             </main>
         )
     }
     const posts = await getAdminPosts()
     return (
-        <main>
-            <header>
-                <h1>文章后台</h1>
+        <main className="mx-auto min-h-screen w-full max-w-5xl px-5 py-8">
+            <header className="mb-8 flex items-center justify-between border-b border-neutral-300 pb-5">
+                <div>
+                    <p className="text-sm text-neutral-500">Admin</p>
+                    <h1 className="text-3xl font-semibold text-neutral-950">文章后台</h1>
+                </div>
                 <form action="/api/admin/logout" method="post">
-                    <button type="submit">退出</button>
+                    <button className="rounded border border-neutral-300 bg-white px-4 py-2 text-sm hover:border-neutral-950" type="submit">退出</button>
                 </form>
             </header>
-            <section>
-                <h2>新建文章</h2>
-                <form action="/api/admin/posts" method="post">
-                    <input name="title" placeholder="标题" required />
-                    <input name="slug" placeholder="slug" required />
-                    <textarea name="excerpt" placeholder="摘要"></textarea>
-                    <textarea name="content" placeholder="正文" required></textarea>
-                    <button name="status" value="draft" type="submit" >保存草稿</button>
-                    <button name="status" value="published" type="submit" >发布</button>
+            <section className="mb-10 rounded border border-neutral-300 bg-white p-5">
+                <h2 className="mb-5 text-xl font-semibold text-neutral-950">新建文章</h2>
+                <form className="grid gap-4" action="/api/admin/posts" method="post">
+                    <input className="rounded border border-neutral-300 px-3 py-2 outline-none focus:border-neutral-950" name="title" placeholder="标题" required />
+                    <input className="rounded border border-neutral-300 px-3 py-2 outline-none focus:border-neutral-950" name="slug" placeholder="slug" required />
+                    <textarea className="min-h-24 rounded border border-neutral-300 px-3 py-2 outline-none focus:border-neutral-950" name="excerpt" placeholder="摘要"></textarea>
+                    <textarea className="min-h-56 rounded border border-neutral-300 px-3 py-2 outline-none focus:border-neutral-950" name="content" placeholder="正文" required></textarea>
+                    <div className="flex gap-3">
+
+                        <button className="rounded border border-neutral-300 bg-white px-4 py-2 hover:border-neutral-950" name="status" value="draft" type="submit" >保存草稿</button>
+                        <button className="rounded bg-neutral-950 px-4 py-2 text-white" name="status" value="published" type="submit" >发布</button>
+                    </div>
                 </form>
             </section>
             <section>
-                <h2>文章列表</h2>
-                <ul>
+                <h2 className="mb-4 text-xl font-semibold text-neutral-950">文章列表</h2>
+                <ul className="divide-y divide-neutral-200 rounded border border-neutral-300 bg-white">
                     {posts.map((post) => (
-                        <li key={post.id}>
-                            <Link href={`/admin/posts/${post.id}`} >{post.title}</Link>
-                            <span> / {post.status}</span>
-                            {post.status === 'published' ? (<Link href={`/posts/${post.slug}`}> / 查看</Link>) : null}
+                        <li key={post.id} className="flex items-center justify-between gap-4 px-4 py-3">
+                            <div className="min-w-0">
+                                <Link className="block truncate font-medium text-neutral-950 hover:underline" href={`/admin/posts/${post.id}`} >{post.title}</Link>
+                                <span className="text-sm text-neutral-500">{post.status}</span>
+                            </div>
+                            {post.status === 'published' ? (<Link className="shrink-0 text-sm text-neutral-500 hover:text-neutral-950" href={`/posts/${post.slug}`}>查看</Link>) : null}
                         </li>
                     ))}
                 </ul>
