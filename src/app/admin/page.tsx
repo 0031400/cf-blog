@@ -3,7 +3,7 @@ import { getAdminPosts } from "@/lib/posts"
 import Link from "next/link"
 
 type PageProps = {
-    searchParams: Promise<{ error?: string }>
+    searchParams: Promise<{ error?: string, page?: string }>
 }
 export const dynamic = "force-dynamic"
 export default async function AdminPage({ searchParams }: PageProps) {
@@ -23,7 +23,9 @@ export default async function AdminPage({ searchParams }: PageProps) {
             </main>
         )
     }
-    const posts = await getAdminPosts()
+    const page = Number(params.page || '1')
+    const result = await getAdminPosts(page, 10)
+    const posts = result.items
     return (
         <main className="mx-auto min-h-[calc(100vh-57px)] w-full max-w-5xl px-5 py-8">
             <header className="mb-8 flex items-center justify-between border-b border-neutral-300 pb-5">
@@ -65,6 +67,15 @@ export default async function AdminPage({ searchParams }: PageProps) {
                         </li>
                     ))}
                 </ul>
+                {
+                    result.totalPages > 1 ? (
+                        <nav className="mt-4 flex items-center justify-between text-sm text-neutral-600">
+                            {result.page > 1 ? (<Link className="hover:text-neutral-950 hover:underline" href={`/admin?page=${result.page - 1}`}>上一页</Link>) : <span></span>}
+                            <span>第 {result.page} / {result.totalPages} 页</span>
+                            {result.page < result.totalPages ? (<Link className="hover:text-neutral-950 hover:underline" href={`/admin?page=${result.page + 1}`}>下一页</Link>) : <span></span>}
+                        </nav>
+                    ) : null
+                }
             </section>
         </main>
     )

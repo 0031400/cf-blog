@@ -1,8 +1,14 @@
 import { getPublishedPosts } from "@/lib/posts";
 import Link from "next/link";
 export const dynamic = "force-dynamic"
-export default async function Home() {
-	const posts = await getPublishedPosts()
+type PageProps = {
+	searchParams: Promise<{ page?: string }>
+}
+export default async function Home({ searchParams }: PageProps) {
+	const params = await searchParams
+	const page = Number(params.page || '1')
+	const result = await getPublishedPosts(page, 10)
+	const posts = result.items
 	return (
 		<main className="mx-auto min-h-[calc(100vh-57px)] w-full max-w-3xl px-5 py-10">
 			<header className="mb-10 border-b border-neutral-300 pb-6">
@@ -20,6 +26,15 @@ export default async function Home() {
 					))}
 				</ul>
 			)}
+			{
+				result.totalPages > 1 ? (
+					<nav className="mt-4 flex items-center justify-between text-sm text-neutral-600">
+						{result.page > 1 ? (<Link className="hover:text-neutral-950 hover:underline" href={`/?page=${result.page - 1}`}>上一页</Link>) : <span></span>}
+						<span>第 {result.page} / {result.totalPages} 页</span>
+						{result.page < result.totalPages ? (<Link className="hover:text-neutral-950 hover:underline" href={`/?page=${result.page + 1}`}>下一页</Link>) : <span></span>}
+					</nav>
+				) : null
+			}
 		</main>
 	);
 }
