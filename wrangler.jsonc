@@ -15,27 +15,34 @@
 		"nodejs_compat",
 		"global_fetch_strictly_public"
 	],
-	"assets": {
-		"binding": "ASSETS",
-		"directory": ".open-next/assets"
-	},
-	"images": {
+	// "assets": {
+	// 	"binding": "ASSETS",
+	// 	"directory": ".open-next/assets"
+	// },
+	// "images": {
 		// Enable image optimization
 		// see https://opennext.js.org/cloudflare/howtos/image
-		"binding": "IMAGES"
-	},
-	"services": [
-		{
+		// "binding": "IMAGES"
+	// },
+	// "services": [
+	// 	{
 			// Self-reference service binding, the service name must match the worker name
 			// see https://opennext.js.org/cloudflare/caching
-			"binding": "WORKER_SELF_REFERENCE",
-			"service": "cf-blog"
-		}
-	],
+	// 		"binding": "WORKER_SELF_REFERENCE",
+	// 		"service": "cf-blog"
+	// 	}
+	// ],
 	"observability": {
 		"enabled": true
 	},
-	"upload_source_maps": true
+	// "upload_source_maps": true,
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "cf-blog",
+			"database_id": "6c920c92-0613-477d-90bb-e78cfe8ae3cb"
+		}
+	],
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
@@ -53,5 +60,5 @@
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
 	 */
-	// "vars": {  "MY_VARIABLE": "production_value" }
+	"vars": {  "ADMIN_TOKEN": "123456" }
 }
