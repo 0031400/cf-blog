@@ -39,6 +39,12 @@ export default function RootLayout({
 					</nav>
 				</header>
 				{children}
+				<footer className="border-t border-neutral-200 bg-white/70">
+					<div className="mx-auto flex w-full max-w-5xl flex-col gap-2 px-5 py-6 text-sm text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
+						<p>© 2026 - 0031400. All rights reserved.</p>
+						<p>Powered by <a className="font-medium text-neutral-700 underline underline-offset-4 hover:text-neutral-950" href="https://github.com/0031400/cf-blog" target="_blank" rel="noreferrer">CF-BLOG</a></p>
+					</div>
+				</footer>
 			</body>
 		</html>
 	);
