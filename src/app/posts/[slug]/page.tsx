@@ -1,3 +1,4 @@
+import { MarkdownContent } from "@/components/MarkdownContent"
 import { getPostBySlug } from "@/lib/posts"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -21,7 +22,7 @@ export default async function PostPage({ params }: PageProps) {
                     {post.published_at ? <time className="mt-4 block text-sm text-neutral-500">{post.published_at}</time> : null}
                     <p className="mt-5 text-lg leading-8 text-neutral-600">{post.excerpt}</p>
                 </header>
-                <div className="whitespace-pre-wrap text-base leading-8 text-neutral-800">{post.content}</div>
+                <MarkdownContent content={post.content}></MarkdownContent>
             </article>
         </main>
     )

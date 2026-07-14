@@ -44,3 +44,82 @@
 		resize: vertical;
 	}
 }
+
+@layer components {
+	.markdown-body {
+		@apply text-base leading-8 text-neutral-800;
+	}
+
+	.markdown-body>*+* {
+		@apply mt-4;
+	}
+
+	.markdown-body h1 {
+		@apply mt-10 text-3xl font-semibold leading-tight text-neutral-950;
+	}
+
+	.markdown-body h2 {
+		@apply mt-8 text-2xl font-semibold leading-tight text-neutral-950;
+	}
+
+	.markdown-body h3 {
+		@apply mt-6 text-xl font-semibold leading-tight text-neutral-950;
+	}
+
+	.markdown-body p {
+		@apply m-0;
+	}
+
+	.markdown-body a {
+		@apply text-teal-700 underline underline-offset-4;
+	}
+
+	.markdown-body ul {
+		@apply list-disc pl-6;
+	}
+
+	.markdown-body ol {
+		@apply list-decimal pl-6;
+	}
+
+	.markdown-body blockquote {
+		@apply border-l-4 border-neutral-300 pl-4 text-neutral-600;
+	}
+
+	.markdown-body code {
+		@apply rounded bg-neutral-200 px-1.5 py-0.5 text-sm;
+	}
+
+	.markdown-body pre {
+		@apply overflow-x-auto rounded bg-neutral-950 p-4 text-neutral-50;
+	}
+
+	.markdown-body pre code {
+		@apply bg-transparent p-0 text-inherit;
+	}
+
+	.markdown-body table {
+		@apply w-full border-collapse text-sm;
+	}
+
+	.markdown-body th,
+	.markdown-body td {
+		@apply border border-neutral-300 px-3 py-2 text-left;
+	}
+
+	.markdown-body th {
+		@apply bg-neutral-100;
+	}
+
+	.markdown-body img {
+		@apply my-6 h-auto max-w-full rounded border border-neutral-200 bg-white;
+	}
+
+	.markdown-body p:has(img) {
+		@apply my-6;
+	}
+
+	.markdown-body p:has(img) img {
+		@apply mx-auto;
+	}
+}
