@@ -1,7 +1,6 @@
 import { getPublishedPosts } from "@/lib/posts";
 import { getSiteConfig } from "@/lib/site";
 import Link from "next/link";
-export const dynamic = "force-dynamic"
 type PageProps = {
 	searchParams: Promise<{ page?: string }>
 }

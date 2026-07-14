@@ -13,15 +13,16 @@ const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
 	subsets: ["latin"],
 });
-
-export const metadata: Metadata = {
-	title: "CF Blog",
-	description: "A blog running on Cloudflare Workers and D1",
-	icons: {
-		icon: "/favicon.svg",
-	},
-};
-
+export function generateMetadata(): Metadata {
+	const site = getSiteConfig()
+	return {
+		title: site.title,
+		description: site.subtitle,
+		icons: {
+			icon: "/favicon.ico",
+		},
+	}
+}
 export default function RootLayout({
 	children,
 }: Readonly<{

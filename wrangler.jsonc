@@ -60,10 +60,5 @@
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
 	 */
-	"vars": {
-		"ADMIN_TOKEN": "123456",
-		"BLOG_TITLE": "CF BLOG",
-		"BLOG_SUBTITLE": "Cloudflare Workers Blog",
-		"BLOG_AUTHOR": "admin"
-	}
+	// "vars": {}
 }

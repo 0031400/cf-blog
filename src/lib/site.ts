@@ -1,10 +1,10 @@
-import { getCloudflareContext } from "@opennextjs/cloudflare";
-
 export function getSiteConfig() {
-    const env = getCloudflareContext().env
+    const title = process.env.BLOG_TITLE?.trim()
+    const subtitle = process.env.BLOG_SUBTITLE?.trim()
+    const author = process.env.BLOG_AUTHOR?.trim()
     return {
-        title: env.BLOG_TITLE || "CF BLOG",
-        subtitle: env.BLOG_SUBTITLE || "Cloudflare Workers Blog",
-        author: env.BLOG_AUTHOR || "admin"
+        title: title || "CF BLOG",
+        subtitle: subtitle || "Cloudflare Workers Blog",
+        author: author || "admin"
     }
 }

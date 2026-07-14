@@ -2,7 +2,7 @@
 
 import { ButtonHTMLAttributes, useRef, useState } from "react"
 
-type ConfirmSubmitButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ConfirmSubmitButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type"> & {
     title: string
     description: string
     confirmText?: string
