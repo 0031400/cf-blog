@@ -48,6 +48,7 @@
 @layer components {
 	.markdown-body {
 		@apply text-base leading-8 text-neutral-800;
+		overflow-wrap: anywhere;
 	}
 
 	.markdown-body>*+* {
@@ -100,6 +101,8 @@
 
 	.markdown-body table {
 		@apply w-full border-collapse text-sm;
+		display: block;
+		overflow-x: auto;
 	}
 
 	.markdown-body th,
