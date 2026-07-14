@@ -100,14 +100,15 @@
 	}
 
 	.markdown-body table {
-		@apply w-full border-collapse text-sm;
+		@apply border-collapse text-sm;
 		display: block;
 		overflow-x: auto;
 	}
 
 	.markdown-body th,
 	.markdown-body td {
-		@apply border border-neutral-300 px-3 py-2 text-left;
+		@apply border border-neutral-300 px-3 py-2 text-left align-top;
+		min-width: 6rem;
 	}
 
 	.markdown-body th {
