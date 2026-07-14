@@ -1,0 +1,30 @@
+name: Deploy Cloudflare Worker
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: yarn
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Deploy Worker
+        run: yarn deploy
+        env:
+          ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+          BLOG_TITLE: ${{ vars.BLOG_TITLE }}
+          BLOG_SUBTITLE: ${{ vars.BLOG_SUBTITLE }}
+          BLOG_AUTHOR: ${{vars.BLOG_AUTHOR}}
+          CLOUDFLARE_ACCOUNT_ID: ${{secrets.CLOUDFLARE_ACCOUNT_ID}}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
