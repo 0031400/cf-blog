@@ -20,14 +20,14 @@
 		"directory": ".open-next/assets"
 	},
 	// "images": {
-		// Enable image optimization
-		// see https://opennext.js.org/cloudflare/howtos/image
-		// "binding": "IMAGES"
+	// Enable image optimization
+	// see https://opennext.js.org/cloudflare/howtos/image
+	// "binding": "IMAGES"
 	// },
 	// "services": [
 	// 	{
-			// Self-reference service binding, the service name must match the worker name
-			// see https://opennext.js.org/cloudflare/caching
+	// Self-reference service binding, the service name must match the worker name
+	// see https://opennext.js.org/cloudflare/caching
 	// 		"binding": "WORKER_SELF_REFERENCE",
 	// 		"service": "cf-blog"
 	// 	}
@@ -60,5 +60,10 @@
 	 * Note: Use secrets to store sensitive data.
 	 * https://developers.cloudflare.com/workers/configuration/secrets/
 	 */
-	"vars": {  "ADMIN_TOKEN": "123456" }
+	"vars": {
+		"ADMIN_TOKEN": "123456",
+		"BLOG_TITLE": "CF BLOG",
+		"BLOG_SUBTITLE": "Cloudflare Workers Blog",
+		"BLOG_AUTHOR": "admin"
+	}
 }

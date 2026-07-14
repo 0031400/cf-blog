@@ -1,4 +1,5 @@
 import { getPublishedPosts } from "@/lib/posts";
+import { getSiteConfig } from "@/lib/site";
 import Link from "next/link";
 export const dynamic = "force-dynamic"
 type PageProps = {
@@ -9,11 +10,12 @@ export default async function Home({ searchParams }: PageProps) {
 	const page = Number(params.page || '1')
 	const result = await getPublishedPosts(page, 10)
 	const posts = result.items
+	const site = getSiteConfig()
 	return (
 		<main className="mx-auto min-h-[calc(100vh-57px)] w-full max-w-3xl px-5 py-10">
 			<header className="mb-10 border-b border-neutral-300 pb-6">
-				<p className="mb-2 text-sm text-neutral-500">Cloudflare Workers Blog</p>
-				<h1 className="text-4xl font-semibold tracking-normal text-neutral-900">CF BLOG</h1>
+				<p className="mb-2 text-sm text-neutral-500">{site.subtitle}</p>
+				<h1 className="text-4xl font-semibold tracking-normal text-neutral-900">{site.title}</h1>
 			</header>
 			{posts.length === 0 ? (<p className="rounded border border-neutral-100 bg-white text-neutral-600">暂无文章</p>) : (
 				<ul className="space-y-4">
