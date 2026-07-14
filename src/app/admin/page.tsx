@@ -1,3 +1,4 @@
+import { ConfirmSubmitButton } from "@/components/ConfirmSubmitButton"
 import { isAdmin } from "@/lib/admin"
 import { getAdminPosts } from "@/lib/posts"
 import Link from "next/link"
@@ -48,9 +49,8 @@ export default async function AdminPage({ searchParams }: PageProps) {
                     <textarea className="min-h-24 rounded border border-neutral-300 px-3 py-2 outline-none focus:border-neutral-950" name="excerpt" placeholder="摘要"></textarea>
                     <textarea className="min-h-56 rounded border border-neutral-300 px-3 py-2 outline-none focus:border-neutral-950" name="content" placeholder="正文" required></textarea>
                     <div className="flex gap-3">
-
-                        <button className="rounded border border-neutral-300 bg-white px-4 py-2 hover:border-neutral-950" name="status" value="draft" type="submit" >保存草稿</button>
-                        <button className="rounded bg-neutral-950 px-4 py-2 text-white" name="status" value="published" type="submit" >发布</button>
+                        <ConfirmSubmitButton className="rounded border border-neutral-300 bg-white px-4 py-2 hover:border-neutral-950" name="status" value="draft" title="保存为草稿" description="确定要把这篇新文章保存为草稿吗">保存草稿</ConfirmSubmitButton>
+                        <ConfirmSubmitButton className="rounded bg-neutral-950 px-4 py-2 text-white" name="status" value="published" title="发布文章" description="发布后读者可以在前台看到它">发布</ConfirmSubmitButton>
                     </div>
                 </form>
             </section>
